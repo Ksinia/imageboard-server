@@ -1,14 +1,17 @@
 const express = require("express");
-const app = express();
-const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`Listening on port ${port}`));
 const db = require("./db");
 const Image = require("./image/model");
 const cors = require("cors");
-const corsMiddleware = cors();
 const parser = require("body-parser");
-const parserMiddleware = parser();
 const imageRouter = require("./image/router");
+const authRouter = require("./auth/router");
+
+const app = express();
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`Listening on port ${port}`));
+const corsMiddleware = cors();
+const parserMiddleware = parser();
 app.use(corsMiddleware);
 app.use(parserMiddleware);
 app.use(imageRouter);
+app.use(authRouter);
