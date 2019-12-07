@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 const corsMiddleware = cors();
-const parserMiddleware = parser();
+const parserMiddleware = parser.json();
 app.use(corsMiddleware);
 app.use(parserMiddleware);
 app.use(imageRouter);
